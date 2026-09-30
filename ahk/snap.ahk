@@ -32,6 +32,11 @@ SnapActiveWindow(x, y, w, h) {
         WinRestore(hwnd)
         
     WinMove(x, y, w, h, hwnd)
+
+    ; Регистрируем окно в текущем воркспейсе Komorebi
+    try {
+        Run("komorebic.exe manage", , "Hide")
+    }
 }
 
 ; ------------------------------------------------------------------------------
@@ -183,3 +188,26 @@ SnapActiveWindow(x, y, w, h) {
     xCenter := L + wThird + GAP
     SnapActiveWindow(xCenter, T, wThird, H)
 }
+
+; ==============================================================================
+; Воркспейсы / Профили (Alt + 1 .. 7)
+; ==============================================================================
+!1::Run("komorebic.exe focus-workspace 0", , "Hide")
+!2::Run("komorebic.exe focus-workspace 1", , "Hide")
+!3::Run("komorebic.exe focus-workspace 2", , "Hide")
+!4::Run("komorebic.exe focus-workspace 3", , "Hide")
+!5::Run("komorebic.exe focus-workspace 4", , "Hide")
+!6::Run("komorebic.exe focus-workspace 5", , "Hide")
+!7::Run("komorebic.exe focus-workspace 6", , "Hide")
+
+; Перенос активного окна на рабочий стол (Alt + Shift + 1 .. 7)
+!+1::Run("komorebic.exe move-to-workspace 0", , "Hide")
+!+2::Run("komorebic.exe move-to-workspace 1", , "Hide")
+!+3::Run("komorebic.exe move-to-workspace 2", , "Hide")
+!+4::Run("komorebic.exe move-to-workspace 3", , "Hide")
+!+5::Run("komorebic.exe move-to-workspace 4", , "Hide")
+!+6::Run("komorebic.exe move-to-workspace 5", , "Hide")
+!+7::Run("komorebic.exe move-to-workspace 6", , "Hide")
+
+; Принудительно привязать окно к текущему столу
+!m::Run("komorebic.exe manage", , "Hide")
