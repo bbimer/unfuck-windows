@@ -3,26 +3,27 @@
   "app_specific_configuration_path": "$Env:USERPROFILE/applications.json",
   "window_hiding_behaviour": "Cloak",
   "cross_monitor_move_behaviour": "Insert",
-  "default_workspace_padding": 2,
-  "default_container_padding": 2,
+  "default_workspace_padding": 4,
+  "default_container_padding": 4,
   "border": true,
-  "boarder_style": "System",
+  "border_implementation": "Windows",
+  "border_style": "Rounded",
   "border_width": 3,
-  "border_offset": 0,
-  "boarder_colors": {
+  "border_offset": -1,
+  "border_colours": {
     "single": "#89b4fa",
-    "stack": "#89b4fa",
-    "floating": "#89b4fa",
-    "monocle": "#89b4fa",
-    "unfocused": "#89b4fa"
+    "stack": "#cba6f7",
+    "floating": "#f9e2af",
+    "monocle": "#a6e3a1",
+    "unfocused": "#313244"
   },
   "mouse_follows_focus": false,
   "transparency": true,
   "transparency_alpha": 250,
   "animation": {
     "enabled": true,
-    "duration": 300,
-    "fps": 100,
+    "duration": 250,
+    "fps": 120,
     "style": {
       "movement": "EaseOutBack",
       "transparency": "Linear"
@@ -42,39 +43,250 @@
       "font_size": 16
     }
   },
+  "manage_rules": [
+    {
+      "kind": "Exe",
+      "id": "Code.exe",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Exe",
+      "id": "chrome.exe",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Exe",
+      "id": "msedge.exe",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Exe",
+      "id": "OneCommander.exe",
+      "matching_strategy": "Equals"
+    }
+  ],
+  "ignore_rules": [
+    {
+      "kind": "Class",
+      "id": "Windows.UI.Composition.DesktopWindowContentBridge",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Title",
+      "id": "DesktopWindowXamlSource",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Exe",
+      "id": "OneCommanderConnector.exe",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Exe",
+      "id": "toggle_taskbar.exe",
+      "matching_strategy": "Equals"
+    }
+  ],
   "monitors": [
     {
       "workspaces": [
         {
-          "name": "I",
-          "layout": "BSP"
+          "name": "DEV",
+          "layout": "BSP",
+          "workspace_rules": [
+            {
+              "kind": "Exe",
+              "id": "Code.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "Cursor.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "idea64.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "pycharm64.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "webstorm64.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Title",
+              "id": "DevTools",
+              "matching_strategy": "Contains"
+            },
+            {
+              "kind": "Title",
+              "id": "localhost",
+              "matching_strategy": "Contains"
+            },
+            {
+              "kind": "Title",
+              "id": "127.0.0.1",
+              "matching_strategy": "Contains"
+            }
+          ]
         },
         {
-          "name": "II",
-          "layout": "BSP"
+          "name": "WEB",
+          "layout": "BSP",
+          "initial_workspace_rules": [
+            {
+              "kind": "Exe",
+              "id": "chrome.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "msedge.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "brave.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "firefox.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "zen.exe",
+              "matching_strategy": "Equals"
+            }
+          ]
         },
         {
-          "name": "III",
-          "layout": "BSP"
+          "name": "FILES",
+          "layout": "BSP",
+          "workspace_rules": [
+            {
+              "kind": "Exe",
+              "id": "OneCommander.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "explorer.exe",
+              "matching_strategy": "Equals"
+            }
+          ]
         },
         {
-          "name": "IV",
-          "layout": "BSP"
+          "name": "TERM",
+          "layout": "BSP",
+          "workspace_rules": [
+            {
+              "kind": "Class",
+              "id": "CASCADIA_HOSTING_WINDOW_CLASS",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "wt.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "pwsh.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "powershell.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "cmd.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "alacritty.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "wezterm-gui.exe",
+              "matching_strategy": "Equals"
+            }
+          ]
         },
         {
-          "name": "V",
-          "layout": "BSP"
+          "name": "CHAT",
+          "layout": "BSP",
+          "workspace_rules": [
+            {
+              "kind": "Exe",
+              "id": "Telegram.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "Discord.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "Slack.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "WhatsApp.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "Unigram.exe",
+              "matching_strategy": "Equals"
+            }
+          ]
         },
         {
-          "name": "VI",
-          "layout": "BSP"
+          "name": "MEDIA",
+          "layout": "BSP",
+          "workspace_rules": [
+            {
+              "kind": "Exe",
+              "id": "Spotify.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "vlc.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "Obsidian.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "Notion.exe",
+              "matching_strategy": "Equals"
+            }
+          ]
         },
         {
-          "name": "VII",
-          "layout": "BSP"
+          "name": "MISC",
+          "layout": "BSP",
+          "workspace_rules": []
         }
       ]
     }
-  ],
-  "border_implementation": "Windows"
+  ]
 }

@@ -3,7 +3,8 @@
     Syncs customization configs from repo to Windows user profile and reloads services.
 #>
 param(
-    [switch]$NoReload
+    [switch]$NoReload,
+    [switch]$Restart
 )
 
 $ErrorActionPreference = "Stop"
@@ -38,26 +39,46 @@ if ($NoReload) {
     exit 0
 }
 
-Write-Host "Reloading Komorebi & whkd..." -ForegroundColor Cyan
+Write-Host "Applying Komorebi & whkd configuration..." -ForegroundColor Cyan
 
-# Reload Komorebi
-try {
-    Remove-Item "$env:TEMP\komorebi.state.json" -Force -ErrorAction SilentlyContinue
-    komorebic replace-configuration "$komorebiDst"
-    komorebic retile
-    Write-Host " [OK] Komorebi configuration replaced & retiled" -ForegroundColor Green
-} catch {
-    Write-Warning "Failed to reload Komorebi: $_"
+function Start-DetachedProcess {
+    param([string]$CommandLine)
+    Invoke-CimMethod -ClassName Win32_Process -MethodName Create -Arguments @{CommandLine = $CommandLine} | Out-Null
 }
 
-# Reload whkd
-try {
-    Get-Process whkd -ErrorAction SilentlyContinue | Stop-Process -Force
-    Start-Sleep -Milliseconds 200
-    Start-Process whkd -WindowStyle hidden
-    Write-Host " [OK] whkd daemon restarted" -ForegroundColor Green
-} catch {
-    Write-Warning "Failed to reload whkd: $_"
+if ($Restart) {
+    Write-Host "Performing full Komorebi & whkd restart..." -ForegroundColor Yellow
+    komorebic stop --whkd
+    Start-Sleep -Milliseconds 500
+    $noConsole = "C:\Program Files\komorebi\bin\komorebic-no-console.exe"
+    if (Test-Path $noConsole) {
+        Start-DetachedProcess "`"$noConsole`" start --config `"$komorebiDst`" --whkd"
+    } else {
+        Start-DetachedProcess "komorebic.exe start --config `"$komorebiDst`" --whkd"
+    }
+    Start-Sleep -Milliseconds 800
+    komorebic enforce-workspace-rules
+    komorebic retile
+    Write-Host " [OK] Komorebi & whkd full restart completed (headless & detached)" -ForegroundColor Green
+} else {
+    try {
+        komorebic replace-configuration "$komorebiDst"
+        Start-Sleep -Milliseconds 200
+        komorebic enforce-workspace-rules
+        komorebic retile
+        Write-Host " [OK] Komorebi configuration replaced & workspace rules enforced" -ForegroundColor Green
+    } catch {
+        Write-Warning "Failed to replace Komorebi configuration: $_"
+    }
+
+    try {
+        Get-Process whkd -ErrorAction SilentlyContinue | Stop-Process -Force
+        Start-Sleep -Milliseconds 200
+        Start-DetachedProcess "whkd.exe"
+        Write-Host " [OK] whkd daemon restarted (detached from terminal)" -ForegroundColor Green
+    } catch {
+        Write-Warning "Failed to restart whkd: $_"
+    }
 }
 
 Write-Host "All configs applied successfully!" -ForegroundColor Green
