@@ -6,28 +6,27 @@
   "default_workspace_padding": 2,
   "default_container_padding": 2,
   "border": true,
-  "border-implementation": "Native",
-  "border_style": "System",
+  "boarder_style": "System",
   "border_width": 3,
   "border_offset": 0,
-  "border_colors": {
+  "boarder_colors": {
     "single": "#89b4fa",
     "stack": "#89b4fa",
     "floating": "#89b4fa",
-    "monocle": "#a6e3a1",
-    "unfocused": "#313244"
+    "monocle": "#89b4fa",
+    "unfocused": "#89b4fa"
   },
   "mouse_follows_focus": false,
   "transparency": true,
   "transparency_alpha": 250,
   "animation": {
-    "enabled":true,
-    "duration":300,
+    "enabled": true,
+    "duration": 300,
     "fps": 100,
-    "style":{
-      "movement":"EaseOutBack",
-      "transparency":"Linear"
-    } 
+    "style": {
+      "movement": "EaseOutBack",
+      "transparency": "Linear"
+    }
   },
   "theme": {
     "palette": "Catppuccin",
@@ -76,5 +75,6 @@
         }
       ]
     }
-  ]
+  ],
+  "border_implementation": "Windows"
 }

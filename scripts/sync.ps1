@@ -42,9 +42,10 @@ Write-Host "Reloading Komorebi & whkd..." -ForegroundColor Cyan
 
 # Reload Komorebi
 try {
-    komorebic reload-configuration
+    Remove-Item "$env:TEMP\komorebi.state.json" -Force -ErrorAction SilentlyContinue
+    komorebic replace-configuration "$komorebiDst"
     komorebic retile
-    Write-Host " [OK] Komorebi reloaded & retiled" -ForegroundColor Green
+    Write-Host " [OK] Komorebi configuration replaced & retiled" -ForegroundColor Green
 } catch {
     Write-Warning "Failed to reload Komorebi: $_"
 }
