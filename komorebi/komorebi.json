@@ -296,6 +296,11 @@
           "workspace_rules": [
             {
               "kind": "Exe",
+              "id": "YouTube Music.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
               "id": "Spotify.exe",
               "matching_strategy": "Equals"
             },

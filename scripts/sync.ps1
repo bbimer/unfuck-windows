@@ -93,6 +93,14 @@ if (Get-Command code -ErrorAction SilentlyContinue) {
     }
 }
 
+# 8. YouTube Music (Themes)
+$ytmThemesDir = "$env:USERPROFILE\.config\youtube-music\themes"
+if (-not (Test-Path $ytmThemesDir)) {
+    New-Item -ItemType Directory -Path $ytmThemesDir -Force | Out-Null
+}
+Copy-Item "$repoRoot\youtube-music\themes\*" -Destination $ytmThemesDir -Force -ErrorAction SilentlyContinue
+Write-Host " [OK] YouTube Music themes synced -> $ytmThemesDir" -ForegroundColor Green
+
 if ($NoReload) {
     Write-Host "Skipping reload as requested." -ForegroundColor Yellow
     exit 0

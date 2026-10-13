@@ -15,7 +15,7 @@
 | **`Alt + 3`** | **`FILES`** | Файловый менеджер | **OneCommander** (`OneCommander.exe`), Explorer |
 | **`Alt + 4`** | **`TERM`** | Терминалы & Shell | Windows Terminal (`WindowsTerminal.exe`), wt, pwsh, cmd, Alacritty |
 | **`Alt + 5`** | **`CHAT`** | Мессенджеры | Telegram, Discord, Slack, WhatsApp, Unigram |
-| **`Alt + 6`** | **`MEDIA`** | Мультимедиа & Заметки | Spotify, VLC, Obsidian, Notion |
+| **`Alt + 6`** | **`MEDIA`** | Мультимедиа & Заметки | **YouTube Music**, Spotify, VLC, Obsidian, Notion |
 | **`Alt + 7`** | **`MISC`** | Свободный стол | Любые временные окна |
 
 ---
