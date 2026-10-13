@@ -48,20 +48,47 @@
       "kind": "Exe",
       "id": "Code.exe",
       "matching_strategy": "Equals"
-    },
-    {
-      "kind": "Exe",
-      "id": "chrome.exe",
-      "matching_strategy": "Equals"
-    },
-    {
-      "kind": "Exe",
-      "id": "msedge.exe",
-      "matching_strategy": "Equals"
-    },
+    }
+  ],
+  "floating_applications": [
     {
       "kind": "Exe",
       "id": "OneCommander.exe",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Exe",
+      "id": "pwsh.exe",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Exe",
+      "id": "powershell.exe",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Exe",
+      "id": "wt.exe",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Exe",
+      "id": "WindowsTerminal.exe",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Class",
+      "id": "CASCADIA_HOSTING_WINDOW_CLASS",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Class",
+      "id": "ConsoleWindowClass",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Exe",
+      "id": "conhost.exe",
       "matching_strategy": "Equals"
     }
   ],
@@ -85,7 +112,60 @@
       "kind": "Exe",
       "id": "toggle_taskbar.exe",
       "matching_strategy": "Equals"
-    }
+    },
+    {
+      "kind": "Title",
+      "id": "Komorebi Cheat Sheet",
+      "matching_strategy": "Equals"
+    },
+    [
+      {
+        "kind": "Exe",
+        "id": "chrome.exe",
+        "matching_strategy": "Equals"
+      },
+      {
+        "kind": "Title",
+        "id": "wants to",
+        "matching_strategy": "Contains"
+      }
+    ],
+    [
+      {
+        "kind": "Exe",
+        "id": "chrome.exe",
+        "matching_strategy": "Equals"
+      },
+      {
+        "kind": "Title",
+        "id": "запрашивает",
+        "matching_strategy": "Contains"
+      }
+    ],
+    [
+      {
+        "kind": "Exe",
+        "id": "chrome.exe",
+        "matching_strategy": "Equals"
+      },
+      {
+        "kind": "Title",
+        "id": "разрешение",
+        "matching_strategy": "Contains"
+      }
+    ],
+    [
+      {
+        "kind": "Exe",
+        "id": "chrome.exe",
+        "matching_strategy": "Equals"
+      },
+      {
+        "kind": "Title",
+        "id": "cookie",
+        "matching_strategy": "Contains"
+      }
+    ]
   ],
   "monitors": [
     {
@@ -93,12 +173,14 @@
         {
           "name": "DEV",
           "layout": "BSP",
-          "workspace_rules": [
+          "initial_workspace_rules": [
             {
               "kind": "Exe",
               "id": "Code.exe",
               "matching_strategy": "Equals"
-            },
+            }
+          ],
+          "workspace_rules": [
             {
               "kind": "Exe",
               "id": "Cursor.exe",
@@ -170,59 +252,12 @@
         {
           "name": "FILES",
           "layout": "BSP",
-          "workspace_rules": [
-            {
-              "kind": "Exe",
-              "id": "OneCommander.exe",
-              "matching_strategy": "Equals"
-            },
-            {
-              "kind": "Exe",
-              "id": "explorer.exe",
-              "matching_strategy": "Equals"
-            }
-          ]
+          "workspace_rules": []
         },
         {
           "name": "TERM",
           "layout": "BSP",
-          "workspace_rules": [
-            {
-              "kind": "Class",
-              "id": "CASCADIA_HOSTING_WINDOW_CLASS",
-              "matching_strategy": "Equals"
-            },
-            {
-              "kind": "Exe",
-              "id": "wt.exe",
-              "matching_strategy": "Equals"
-            },
-            {
-              "kind": "Exe",
-              "id": "pwsh.exe",
-              "matching_strategy": "Equals"
-            },
-            {
-              "kind": "Exe",
-              "id": "powershell.exe",
-              "matching_strategy": "Equals"
-            },
-            {
-              "kind": "Exe",
-              "id": "cmd.exe",
-              "matching_strategy": "Equals"
-            },
-            {
-              "kind": "Exe",
-              "id": "alacritty.exe",
-              "matching_strategy": "Equals"
-            },
-            {
-              "kind": "Exe",
-              "id": "wezterm-gui.exe",
-              "matching_strategy": "Equals"
-            }
-          ]
+          "workspace_rules": []
         },
         {
           "name": "CHAT",

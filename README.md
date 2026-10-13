@@ -1,6 +1,6 @@
-# Windows Customization Stack (Komorebi + YASB + whkd + OneCommander)
+# Windows Customization Stack (Komorebi + YASB + whkd + OneCommander + Terminal + Fastfetch + VS Code)
 
-Связка для организации рабочих столов, динамического тайлинга и быстрого управления на Windows 11.
+Связка для организации рабочих столов, динамического тайлинга, красивого терминала (Windows Terminal + PowerShell 7 + Oh My Posh wholespace + Fastfetch), редактора VS Code (Lunar Pink + Bunker) и быстрого управления на Windows 11.
 
 ---
 
@@ -54,11 +54,21 @@
 | Комбинация | Действие |
 |---|---|
 | **`Alt + E`** | Запустить **OneCommander** |
-| **`Alt + Return`** / **`Alt + T`** | Запустить **PowerShell (pwsh)** |
+| **`Alt + Return`** / **`Alt + T`** | Запустить **Windows Terminal (pwsh + Oh My Posh)** |
 | **`Alt + B`** | Показать / скрыть панель задач Windows |
 | **`Alt + Shift + O`** | Перезагрузить конфиг Komorebi и применить правила столов |
 | **`Alt + Shift + E`** | Принудительно раскидать все открытые окна по профилям |
 | **`Alt + O`** | Перезапустить демон хоткеев whkd |
+
+---
+
+## Редактор VS Code (Lunar Pink + Bunker Icons)
+
+- Цветовая тема: **Lunar Pink** (`nicolasdschmidt.lunar-pink`)
+- Набор иконок: **dobri-theme-icons** (`sldobri.bunker`)
+- Конфигурация: `vscode/settings.json` и `vscode/extensions.txt`
+
+При выполнении `.\scripts\sync.ps1` настройки автоматически сливаются в `%APPDATA%\Code\User\settings.json`, а расширения при необходимости доустанавливаются через CLI `code`.
 
 ---
 

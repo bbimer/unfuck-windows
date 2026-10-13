@@ -12,15 +12,13 @@ bars:
     class_name: "yasb-bar"
     alignment:
       position: "top"
-      center: false
     blur_effect:
       enabled: true 
-      acrylic: true 
       dark_mode: true
       round_corners: true
       border_color: None
     window_flags:
-      always_on_top: true
+      always_on_top: false
       windows_app_bar: true
     dimensions:
       width: "100%"
@@ -33,6 +31,7 @@ bars:
     widgets:
       left:
         [
+          "win_button",
           "active_window"
         ] 
       center: [
@@ -46,10 +45,25 @@ bars:
           "taskbar",
           "weather",
           "volume",
+          "language",
           "apps",
           "power_menu"
         ]
 widgets:
+  language:
+    type: "yasb.language.LanguageWidget"
+    options:
+      label: "{lang[language_code]}"
+      label_alt: "{lang[name]}"
+      update_interval: 1
+      callbacks:
+        on_left: "toggle_menu"
+      language_menu:
+        direction: "down"
+        alignment: "center"
+        round_corners: true
+        show_layout_icon: true
+        layout_icon: ""
   media:
     type: "yasb.media.MediaWidget"
     options:
@@ -98,11 +112,11 @@ widgets:
         label_default_name: "{index}"
         label_zero_index: false
         hide_empty_workspaces: false
-        hide_if_offline: true
+        hide_if_offline: false
   komorebi_active_layout:
     type: "komorebi.active_layout.ActiveLayoutWidget"
     options:
-      hide_if_offline: false
+      hide_if_offline: true
       label: "{icon}"
       layouts: ['bsp', 'columns', 'rows', 'grid', 'vertical_stack', 'horizontal_stack', 'ultrawide_vertical_stack','right_main_vertical_stack']
       layout_icons:
@@ -115,7 +129,7 @@ widgets:
         ultrawide_vertical_stack: "W-STACK"
         right_main_vertical_stack: "RMV-STACK"
         monocle: "MONOCLE"
-        maximised: "MAX"
+        maximized: "MAX"
         floating: "FLOATING"
         paused: "PAUSED"
       callbacks:
@@ -125,12 +139,12 @@ widgets:
   weather:
     type: "yasb.weather.WeatherWidget"
     options:
-      label: "<span>{icon}</span> {temp_c}"
-      label_alt: "{location}: Min {min_temp_c}, Max {max_temp_c}, Humidity {humidity}"
+      label: "<span>{icon}</span> {temp}"
+      label_alt: "{location}: Min {min_temp}, Max {max_temp}, Humidity {humidity}"
       api_key: '3bf4cf9a7c3f40d6b31174128242807' # Get your free API key from https://www.weatherapi.com/
       update_interval: 600 # Update interval in seconds, Min 600 seconds
       hide_decimal: true
-      location: 'Halifax, Nova Scotia, Canada' # You can use "USA Los Angeles 90006" {COUNTRY CITY ZIP_CODE}, or just city.
+      location: 'Los Angeles, CA, USA' # You can use "USA Los Angeles 90006" {COUNTRY CITY ZIP_CODE}, or just city.
       callbacks:
         on_left: "toggle_label"
       icons: 
@@ -140,16 +154,16 @@ widgets:
         cloudyNight: "\ue311"
         rainyDay: "\udb81\ude7e"
         rainyNight: "\udb81\ude7e"
-        snowyIcyDay: "\udb81\udd98"
-        snowyIcyNight: "\udb81\udd98"
-        blizzard: "\uebaa"
+        snowyDay: "\udb81\udd98"
+        snowyNight: "\udb81\udd98"
+        blizzardDay: "\uebaa"
         default: "\uebaa"
   volume:
     type: "yasb.volume.VolumeWidget"
     options:
       label: "<span>{icon}</span> {level}"
       label_alt: "{volume}"
-      volume_icons:
+      icons:
         - "\ueee8"  # Icon for muted
         - "\uf026"  # Icon for 0-10% volume
         - "\uf027"  # Icon for 11-30% volume
@@ -183,11 +197,6 @@ widgets:
         - {icon: "\uf46a", launch: "cmd.exe /c start ms-settings:windowsupdate"}
         - {icon: "\uf422", launch: "search"}
         - {icon: "\udb84\udf55", launch: "widget"}
-      container_padding: 
-        top: 0
-        left: 8
-        bottom: 0
-        right: 8
   taskbar:
     type: "yasb.taskbar.TaskbarWidget"
     options:

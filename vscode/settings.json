@@ -1,0 +1,12 @@
+{
+    "workbench.colorTheme": "Lunar Pink",
+    "workbench.iconTheme": "dobri-theme-icons",
+    "workbench.editor.enablePreview": false,
+    "editor.unicodeHighlight.invisibleCharacters": false,
+    "files.saveConflictResolution": "overwriteFileOnDisk",
+    "continue.enableNextEdit": false,
+    "workbench.editorAssociations": {
+        "*.sqlite3": "default"
+    }
+}
+

@@ -34,6 +34,65 @@ Copy-Item "$repoRoot\yasb\config.yaml" -Destination "$yasbDstDir\config.yaml" -F
 Copy-Item "$repoRoot\yasb\styles.css" -Destination "$yasbDstDir\styles.css" -Force
 Write-Host " [OK] YASB config & styles synced -> $yasbDstDir" -ForegroundColor Green
 
+# 4. Windows Terminal
+$wtDst = "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
+if (Test-Path (Split-Path $wtDst)) {
+    Copy-Item "$repoRoot\terminal\settings.json" -Destination $wtDst -Force
+    Write-Host " [OK] Windows Terminal settings synced -> $wtDst" -ForegroundColor Green
+}
+
+# 5. PowerShell Profile
+$psProfileDir = "$env:USERPROFILE\Documents\PowerShell"
+if (-not (Test-Path $psProfileDir)) {
+    New-Item -ItemType Directory -Path $psProfileDir -Force | Out-Null
+}
+Copy-Item "$repoRoot\powershell\Microsoft.PowerShell_profile.ps1" -Destination "$psProfileDir\Microsoft.PowerShell_profile.ps1" -Force
+Write-Host " [OK] PowerShell profile synced -> $psProfileDir" -ForegroundColor Green
+
+# 6. Fastfetch
+$fastfetchDir = "$env:USERPROFILE\.config\fastfetch"
+if (-not (Test-Path $fastfetchDir)) {
+    New-Item -ItemType Directory -Path $fastfetchDir -Force | Out-Null
+}
+Copy-Item "$repoRoot\fastfetch\config.jsonc" -Destination "$fastfetchDir\config.jsonc" -Force
+Copy-Item "$repoRoot\fastfetch\ascii.txt" -Destination "$fastfetchDir\ascii.txt" -Force
+Copy-Item "$repoRoot\fastfetch\logo.jpg" -Destination "$fastfetchDir\logo.jpg" -Force -ErrorAction SilentlyContinue
+Write-Host " [OK] Fastfetch config, ascii art & logo synced -> $fastfetchDir" -ForegroundColor Green
+
+# 7. VS Code (Lunar Pink theme + Bunker icons)
+$vscodeUserDir = "$env:APPDATA\Code\User"
+if (-not (Test-Path $vscodeUserDir)) {
+    New-Item -ItemType Directory -Path $vscodeUserDir -Force | Out-Null
+}
+$vscodeSettingsDst = "$vscodeUserDir\settings.json"
+if (Test-Path $vscodeSettingsDst) {
+    try {
+        $currentJson = Get-Content $vscodeSettingsDst -Raw | ConvertFrom-Json
+        $newJson = Get-Content "$repoRoot\vscode\settings.json" -Raw | ConvertFrom-Json
+        foreach ($prop in $newJson.PSObject.Properties) {
+            $currentJson | Add-Member -MemberType NoteProperty -Name $prop.Name -Value $prop.Value -Force
+        }
+        $currentJson | ConvertTo-Json -Depth 10 | Set-Content $vscodeSettingsDst -Encoding utf8
+    } catch {
+        Copy-Item "$repoRoot\vscode\settings.json" -Destination $vscodeSettingsDst -Force
+    }
+} else {
+    Copy-Item "$repoRoot\vscode\settings.json" -Destination $vscodeSettingsDst -Force
+}
+Write-Host " [OK] VS Code settings & theme synced -> $vscodeSettingsDst" -ForegroundColor Green
+
+# Install VS Code theme extensions if 'code' command is available
+if (Get-Command code -ErrorAction SilentlyContinue) {
+    $extensionsFile = "$repoRoot\vscode\extensions.txt"
+    if (Test-Path $extensionsFile) {
+        $extensions = Get-Content $extensionsFile | Where-Object { $_ -match '\S' }
+        foreach ($ext in $extensions) {
+            code --install-extension $ext --force 2>$null | Out-Null
+        }
+        Write-Host " [OK] VS Code theme extensions ensured (Lunar Pink & Bunker icons)" -ForegroundColor Green
+    }
+}
+
 if ($NoReload) {
     Write-Host "Skipping reload as requested." -ForegroundColor Yellow
     exit 0
@@ -74,8 +133,13 @@ if ($Restart) {
     try {
         Get-Process whkd -ErrorAction SilentlyContinue | Stop-Process -Force
         Start-Sleep -Milliseconds 200
-        Start-DetachedProcess "whkd.exe"
-        Write-Host " [OK] whkd daemon restarted (detached from terminal)" -ForegroundColor Green
+        $whkdPath = "C:\Program Files\whkd\bin\whkd.exe"
+        if (Test-Path $whkdPath) {
+            Start-DetachedProcess "`"$whkdPath`""
+        } else {
+            Start-DetachedProcess "whkd.exe"
+        }
+        Write-Host " [OK] whkd daemon restarted (detached)" -ForegroundColor Green
     } catch {
         Write-Warning "Failed to restart whkd: $_"
     }

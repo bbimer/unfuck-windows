@@ -1,7 +1,7 @@
 * {
-	font-size: 14px;
+	font-size: 13px;
 	color: #cdd6f4;
-	font-weight: 550;
+	font-weight: 600;
 	font-family: "Segoe UI","JetBrainsMono NFP";
 	margin: 0;
 	padding: 0;
@@ -9,7 +9,7 @@
 .yasb-bar {
 	padding: 0 8px;
 	margin: 0;
-    background-color: rgba(30, 30, 46, 0.45);
+    background-color: rgba(30, 30, 46, 0.25);
 }
 .widget {
 	padding: 0 8px;
@@ -65,7 +65,7 @@
 	margin-bottom: 10px;
 	color: #ffffff;
 	font-weight: 600;
-	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	font-family: "Segoe UI";
 }
 .power-menu-widget .label {
 	color: #f38ba8;
@@ -82,7 +82,7 @@
 	height: 120px;
 	border-radius: 8px;
 	background-color: rgb(41, 42, 58);
-	font-family: "SegoeUI";
+	font-family: "Segoe UI";
 	color: white;
 	border: 1px solid rgba(255, 255, 255, 0.1);
 	margin: 8px;
@@ -96,7 +96,7 @@
 	font-size: 16px;
 	font-weight: 600;
 	color: rgba(255, 255, 255, 0.95);
-	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	font-family: "Segoe UI";
 }
 .power-menu-popup .button .icon {
 	font-size: 48px;
@@ -177,9 +177,96 @@
     padding: 0;
     margin: 0;
 }
-.taskbar-widget .app-icon {
+.taskbar-widget .app-container {
     padding:0 6px;
+}
+.taskbar-widget .app-container .app-title {
+    padding-left: 4px;
 }
 .win-button-widget .label {
     font-size: 18px;
 }
+
+/* LANGUAGE WIDGET */
+.language-widget {
+    padding: 0 4px;
+}
+.language-widget .widget-container {
+    background-color: rgba(255, 255, 255, 0.1);
+    margin: 5px 0 4px 0;
+    border-radius: 13px;
+    padding: 0 6px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.language-widget .label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #e0e0e0;
+    padding: 0px 4px 1px 4px;
+}
+
+/* LANGUAGE MENU POPUP */
+.language-menu {
+    background-color: #1c1c1c;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 6px;
+    min-width: 200px;
+}
+.language-menu .header {
+    font-size: 11px;
+    font-weight: 600;
+    color: #888888;
+    padding: 6px 10px 8px 10px;
+}
+.language-menu .language-item {
+    padding: 6px 10px;
+    border-radius: 6px;
+    margin: 2px 0;
+}
+.language-menu .language-item:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+.language-menu .language-item.active {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+.language-menu .language-item .icon,
+.language-menu .language-item .code {
+    font-size: 0px;
+    width: 0px;
+    min-width: 0px;
+    max-width: 0px;
+    height: 0px;
+    min-height: 0px;
+    max-height: 0px;
+    margin: 0px;
+    padding: 0px;
+    color: transparent;
+    border: none;
+    background: transparent;
+    qproperty-text: "";
+}
+.language-menu .language-item .name {
+    font-size: 12px;
+    font-weight: 500;
+    color: #ffffff;
+    padding: 0px;
+    margin: 0px;
+}
+.language-menu .language-item .layout {
+    font-size: 11px;
+    color: #888888;
+    padding: 0px;
+    margin: 0px;
+}
+.language-menu .footer {
+    font-size: 11px;
+    color: #888888;
+    padding: 8px 10px 4px 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    margin-top: 6px;
+}
+.language-menu .footer:hover {
+    color: #ffffff;
+}
+

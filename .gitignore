@@ -1,0 +1,26 @@
+# Python cache & artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.log
+
+# Windows temporary files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary scripts and backups
+*.bak
+*.tmp
+*.reg
+fix_console.*
+apply_style.*
+catppuccin_*
+

@@ -1,16 +1,20 @@
 .shell powershell
 
 # Reload whkd configuration
-alt + o                 : powershell -WindowStyle Hidden -Command "Stop-Process -Name whkd -Force; Start-Sleep -Milliseconds 200; Invoke-CimMethod -ClassName Win32_Process -MethodName Create -Arguments @{CommandLine = 'whkd.exe'}"
+alt + o                 : powershell -WindowStyle Hidden -Command "Stop-Process -Name whkd -Force; Start-Sleep -Milliseconds 200; Invoke-CimMethod -ClassName Win32_Process -MethodName Create -Arguments @{CommandLine = '\"C:\Program Files\whkd\bin\whkd.exe\"'}"
 alt + shift + o         : komorebic replace-configuration C:\Users\root\komorebi.json; komorebic enforce-workspace-rules; komorebic retile
 
 alt + i                 : komorebic toggle-shortcuts
 
-# App shortcuts - require pwsh / powershell
-alt + return            : Start-Process pwsh
-alt + t                 : Start-Process pwsh
+# App shortcuts
+alt + return            : Start-Process wt
+alt + t                 : Start-Process wt
 alt + e                 : Start-Process "C:\Program Files\OneCommander\OneCommander.exe"
 alt + b                 : C:\Users\root\.config\toggle_taskbar.exe
+alt + oem_2             : Start-Process pythonw -ArgumentList '"c:\Users\root\Desktop\_customization\scripts\cheatsheet.py"'
+alt + shift + oem_2     : Start-Process pythonw -ArgumentList '"c:\Users\root\Desktop\_customization\scripts\cheatsheet.py"'
+win + oem_2             : Start-Process pythonw -ArgumentList '"c:\Users\root\Desktop\_customization\scripts\cheatsheet.py"'
+alt + f1                : Start-Process pythonw -ArgumentList '"c:\Users\root\Desktop\_customization\scripts\cheatsheet.py"'
 
 alt + shift + q         : komorebic close
 alt + shift + m         : komorebic minimize
@@ -26,6 +30,12 @@ alt + k                 : komorebic focus up
 alt + l                 : komorebic focus right
 alt + shift + oem_4     : komorebic cycle-focus previous # oem_4 is [
 alt + shift + oem_6     : komorebic cycle-focus next     # oem_6 is ]
+
+# Monitors (Cycle focus: Alt + . / , | Move window: Alt + Shift + . / ,)
+alt + oem_period            : komorebic cycle-monitor next
+alt + oem_comma             : komorebic cycle-monitor previous
+alt + shift + oem_period    : komorebic cycle-move-to-monitor next
+alt + shift + oem_comma     : komorebic cycle-move-to-monitor previous
 
 # Move windows (Arrows & Vim keys)
 alt + shift + left      : komorebic move left
