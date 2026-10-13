@@ -156,7 +156,8 @@ widgets:
       hide_decimal: true
       units: "metric"
       callbacks:
-        on_left: "toggle_label"
+        on_left: "toggle_card"
+        on_right: "toggle_label"
       icons: 
         sunnyDay: "\ue30d"
         clearNight: "\ue32b"
