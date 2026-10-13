@@ -141,35 +141,74 @@
 
 /* MEDIA WIDGET */
 .media-widget {
-	padding: 0;
-	padding-left: 2px;
+	padding: 0 4px;
 	margin: 0;
 	border-radius: 16px;
 	margin-right: 8px;
+	background-color: rgba(255, 255, 255, 0.05);
+	border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.media-widget:hover {
+	background-color: rgba(255, 255, 255, 0.08);
+	border-color: rgba(255, 255, 255, 0.16);
 }
 .media-widget .label {
+	color: #ffffff;
+	font-weight: 500;
+	padding: 0 4px;
 	background-color: rgba(0, 0, 0, 0.0);
 }
 .media-widget .btn {
 	color: #acb2c9;
-	padding: 0 3px;
-	margin: 4px 0;
-    font-weight: 500;
+	padding: 0 4px;
+	margin: 4px 1px;
+	font-weight: 500;
 	font-family: Segoe Fluent Icons;
 }
 .media-widget .btn:hover {
 	color: #ffffff;
 }
 .media-widget .btn.play {
-	background-color: rgba(255, 255, 255, 0.1);
+	color: #ffffff;
+	background-color: rgba(255, 255, 255, 0.12);
 	border-radius: 14px;
-	font-size: 16px;
+	font-size: 15px;
 }
 .media-widget .btn.disabled:hover,
 .media-widget .btn.disabled {
 	color: #7d8297;
 	font-size: 12px;
 	background-color: rgba(0, 0, 0, 0);
+}
+.media-widget .progress-bar {
+	background-color: rgba(255, 255, 255, 0.15);
+	border-radius: 1px;
+	max-height: 2px;
+}
+.media-widget .progress-bar::chunk {
+	background-color: #ff3366;
+	border-radius: 1px;
+}
+
+/* MEDIA MENU POPUP */
+.media-menu {
+	background-color: rgba(18, 18, 24, 0.92);
+	border: 1px solid rgba(255, 255, 255, 0.12);
+	border-radius: 16px;
+	padding: 12px;
+}
+.media-menu .popup_title {
+	color: #ffffff;
+	font-weight: 600;
+	font-size: 14px;
+}
+.media-menu .popup_artist {
+	color: #a6adc8;
+	font-size: 12px;
+}
+.media-menu .playback-time {
+	color: #7d8297;
+	font-size: 11px;
 }
 
 /* TASBAR WIDGET */

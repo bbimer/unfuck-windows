@@ -70,15 +70,31 @@ widgets:
       label: "{title} - {artist}"
       label_alt: "{title}"
       max_field_size:
-        label: 36
-        label_alt: 45
+        label: 22
+        label_alt: 32
       show_thumbnail: true
       controls_only: false
       controls_left: true
       hide_empty: true
       thumbnail_alpha: 100
-      thumbnail_padding: 8
-      thumbnail_corner_radius: 6 # Rounded thumbnail
+      thumbnail_padding: 0
+      thumbnail_corner_radius: 12
+      progress_bar:
+        enabled: true
+        alignment: "bottom"
+      scrolling_label:
+        enabled: true
+        style: "bounce-ease"
+      media_menu:
+        blur: true
+        round_corners: true
+        alignment: "right"
+        direction: "down"
+        show_volume_slider: true
+      callbacks:
+        on_left: "toggle_media_menu"
+        on_middle: "toggle_play_pause"
+        on_right: "toggle_label"
       icons:
         prev_track: "\ue892"
         next_track: "\ue893"
