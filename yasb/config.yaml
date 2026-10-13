@@ -70,15 +70,15 @@ widgets:
       label: "{title} - {artist}"
       label_alt: "{title}"
       max_field_size:
-        label: 20
-        label_alt: 30
+        label: 36
+        label_alt: 45
       show_thumbnail: true
       controls_only: false
       controls_left: true
       hide_empty: true
       thumbnail_alpha: 100
       thumbnail_padding: 8
-      thumbnail_corner_radius: 0 # Set to 0 for square corners
+      thumbnail_corner_radius: 6 # Rounded thumbnail
       icons:
         prev_track: "\ue892"
         next_track: "\ue893"
