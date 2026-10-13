@@ -55,13 +55,13 @@ widgets:
     type: "yasb.audio_visualizer.AudioVisualizerWidget"
     options:
       style: "bars"
-      height: 20
-      smoothness: 4
-      sensitivity: 2
+      height: 18
+      smoothness: 35
+      sensitivity: 90
       auto_gain: true
       framerate: 60
-      freq_min: 50
-      freq_max: 12000
+      freq_min: 30
+      freq_max: 8000
       hide_idle: true
       hide_idle_after: 2000
       channels: "mono"
@@ -69,7 +69,7 @@ widgets:
       mirror: false
       reverse: false
       bars:
-        count: 14
+        count: 16
         width: 3
         gap: 2
   language:

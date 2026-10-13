@@ -37,3 +37,4 @@ else:
     user32.SetLayeredWindowAttributes(hwnd, 0, TARGET_ALPHA, LWA_ALPHA)
 
 user32.RedrawWindow(hwnd, None, None, 0x0001 | 0x0004 | 0x0100) # RDW_INVALIDATE | RDW_ERASE | RDW_UPDATENOW
+
