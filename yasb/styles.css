@@ -181,6 +181,16 @@
 	background-color: rgba(0, 0, 0, 0);
 }
 
+/* AUDIO VISUALIZER WIDGET */
+.audio-visualizer-widget {
+	padding: 0 4px;
+	margin: 0 6px 0 0;
+	background-color: transparent;
+}
+.audio-visualizer-canvas {
+	qproperty-fillbrush: qlineargradient(x1:0, y1:1, x2:0, y2:0, stop:0 #89b4fa, stop:0.5 #cba6f7, stop:1 #f38ba8);
+}
+
 /* MEDIA MENU POPUP */
 .media-menu {
 	background-color: rgba(18, 18, 24, 0.95);

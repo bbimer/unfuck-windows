@@ -63,6 +63,8 @@ alt + shift + e         : komorebic enforce-workspace-rules
 # Window manager options
 alt + q                 : komorebic retile
 alt + p                 : komorebic toggle-pause
+alt + u                 : komorebic toggle-transparency
+alt + shift + u         : Start-Process pythonw -ArgumentList '"c:\Users\root\Desktop\_customization\scripts\toggle_transparency.py"'
 
 # Layouts
 alt + x                 : komorebic flip-layout horizontal

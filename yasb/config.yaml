@@ -42,6 +42,7 @@ bars:
       right:
         [
           "media",
+          "audio_visualizer",
           "taskbar",
           "weather",
           "volume",
@@ -50,6 +51,27 @@ bars:
           "power_menu"
         ]
 widgets:
+  audio_visualizer:
+    type: "yasb.audio_visualizer.AudioVisualizerWidget"
+    options:
+      style: "bars"
+      height: 20
+      smoothness: 4
+      sensitivity: 2
+      auto_gain: true
+      framerate: 60
+      freq_min: 50
+      freq_max: 12000
+      hide_idle: true
+      hide_idle_after: 2000
+      channels: "mono"
+      mono_option: "average"
+      mirror: false
+      reverse: false
+      bars:
+        count: 14
+        width: 3
+        gap: 2
   language:
     type: "yasb.language.LanguageWidget"
     options:
