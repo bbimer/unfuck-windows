@@ -78,19 +78,14 @@ widgets:
       hide_empty: true
       thumbnail_alpha: 100
       thumbnail_padding: 0
-      thumbnail_corner_radius: 12
-      progress_bar:
-        enabled: true
-        alignment: "bottom"
-      scrolling_label:
-        enabled: true
-        style: "bounce-ease"
+      thumbnail_corner_radius: 14
       media_menu:
         blur: true
         round_corners: true
         alignment: "right"
         direction: "down"
-        show_volume_slider: true
+        show_source: false
+        show_volume_slider: false
       callbacks:
         on_left: "toggle_media_menu"
         on_middle: "toggle_play_pause"
@@ -153,14 +148,13 @@ widgets:
         on_middle: 'toggle_monocle'
         on_right: 'prev_layout'
   weather:
-    type: "yasb.weather.WeatherWidget"
+    type: "yasb.open_meteo.OpenMeteoWidget"
     options:
-      label: "<span>{icon}</span> {temp}"
-      label_alt: "{location}: Min {min_temp}, Max {max_temp}, Humidity {humidity}"
-      api_key: '3bf4cf9a7c3f40d6b31174128242807' # Get your free API key from https://www.weatherapi.com/
-      update_interval: 600 # Update interval in seconds, Min 600 seconds
+      label: "<span>{icon}</span> {temp}°C"
+      label_alt: "<span>{icon}</span> {temp}°C"
+      update_interval: 600
       hide_decimal: true
-      location: 'Los Angeles, CA, USA' # You can use "USA Los Angeles 90006" {COUNTRY CITY ZIP_CODE}, or just city.
+      units: "metric"
       callbacks:
         on_left: "toggle_label"
       icons: 
@@ -172,7 +166,6 @@ widgets:
         rainyNight: "\udb81\ude7e"
         snowyDay: "\udb81\udd98"
         snowyNight: "\udb81\udd98"
-        blizzardDay: "\uebaa"
         default: "\uebaa"
   volume:
     type: "yasb.volume.VolumeWidget"

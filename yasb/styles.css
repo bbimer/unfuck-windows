@@ -141,7 +141,7 @@
 
 /* MEDIA WIDGET */
 .media-widget {
-	padding: 0 4px;
+	padding: 0 6px;
 	margin: 0;
 	border-radius: 16px;
 	margin-right: 8px;
@@ -180,35 +180,51 @@
 	font-size: 12px;
 	background-color: rgba(0, 0, 0, 0);
 }
-.media-widget .progress-bar {
-	background-color: rgba(255, 255, 255, 0.15);
-	border-radius: 1px;
-	max-height: 2px;
-}
-.media-widget .progress-bar::chunk {
-	background-color: #ff3366;
-	border-radius: 1px;
-}
 
 /* MEDIA MENU POPUP */
 .media-menu {
-	background-color: rgba(18, 18, 24, 0.92);
+	background-color: rgba(18, 18, 24, 0.95);
 	border: 1px solid rgba(255, 255, 255, 0.12);
 	border-radius: 16px;
-	padding: 12px;
+	padding: 14px 16px;
+	min-width: 320px;
+}
+.media-menu .thumbnail {
+	border-radius: 10px;
+	margin-right: 12px;
 }
 .media-menu .popup_title {
 	color: #ffffff;
 	font-weight: 600;
 	font-size: 14px;
+	margin-bottom: 2px;
 }
 .media-menu .popup_artist {
 	color: #a6adc8;
 	font-size: 12px;
+	margin-bottom: 8px;
+}
+.media-menu .btn {
+	color: #cdd6f4;
+	font-size: 16px;
+	padding: 4px 8px;
+	margin: 2px 4px;
+}
+.media-menu .btn:hover {
+	color: #ffffff;
+}
+.media-menu .btn.play {
+	background-color: rgba(255, 255, 255, 0.12);
+	border-radius: 14px;
+	font-size: 16px;
 }
 .media-menu .playback-time {
 	color: #7d8297;
 	font-size: 11px;
+	font-weight: 500;
+}
+.media-menu .progress-slider {
+	min-height: 18px;
 }
 
 /* TASBAR WIDGET */
