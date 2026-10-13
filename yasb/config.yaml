@@ -150,8 +150,8 @@ widgets:
   weather:
     type: "yasb.open_meteo.OpenMeteoWidget"
     options:
-      label: "<span>{icon}</span> {temp}°C"
-      label_alt: "<span>{icon}</span> {temp}°C"
+      label: "<span>{icon}</span> {temp}"
+      label_alt: "<span>{icon}</span> {temp}"
       update_interval: 600
       hide_decimal: true
       units: "metric"
