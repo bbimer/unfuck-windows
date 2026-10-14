@@ -113,6 +113,13 @@ if (Test-Path "$repoRoot\youtube-music\config.json") {
     Write-Host " [OK] YouTube Music config synced -> $ytmAppDir\config.json" -ForegroundColor Green
 }
 
+# 10. Desktop revive shortcut/batch file
+$desktopDir = [Environment]::GetFolderPath("Desktop")
+if (Test-Path "$repoRoot\scripts\revive.bat") {
+    Copy-Item "$repoRoot\scripts\revive.bat" -Destination "$desktopDir\revive.bat" -Force
+    Write-Host " [OK] Desktop revive.bat synced -> $desktopDir\revive.bat" -ForegroundColor Green
+}
+
 if ($NoReload) {
     Write-Host "Skipping reload as requested." -ForegroundColor Yellow
     exit 0

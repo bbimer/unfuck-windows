@@ -262,7 +262,7 @@
         {
           "name": "CHAT",
           "layout": "BSP",
-          "workspace_rules": [
+          "initial_workspace_rules": [
             {
               "kind": "Exe",
               "id": "Telegram.exe",
@@ -293,7 +293,7 @@
         {
           "name": "MEDIA",
           "layout": "BSP",
-          "workspace_rules": [
+          "initial_workspace_rules": [
             {
               "kind": "Exe",
               "id": "YouTube Music.exe",
