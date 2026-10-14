@@ -122,7 +122,8 @@ Write-Host "Applying Komorebi & whkd configuration..." -ForegroundColor Cyan
 
 function Start-DetachedProcess {
     param([string]$CommandLine)
-    Invoke-CimMethod -ClassName Win32_Process -MethodName Create -Arguments @{CommandLine = $CommandLine} | Out-Null
+    $startup = New-CimInstance -ClassName Win32_ProcessStartup -Property @{ShowWindow = [uint16]0} -ClientOnly
+    Invoke-CimMethod -ClassName Win32_Process -MethodName Create -Arguments @{CommandLine = $CommandLine; ProcessStartupInformation = $startup} | Out-Null
 }
 
 if ($Restart) {
@@ -159,10 +160,36 @@ if ($Restart) {
         } else {
             Start-DetachedProcess "whkd.exe"
         }
-        Write-Host " [OK] whkd daemon restarted (detached)" -ForegroundColor Green
+        Write-Host " [OK] whkd daemon restarted (detached & hidden)" -ForegroundColor Green
     } catch {
         Write-Warning "Failed to restart whkd: $_"
     }
+}
+
+try {
+    $komoState = komorebic state | ConvertFrom-Json
+    if ($komoState.is_paused) {
+        komorebic toggle-pause
+        komorebic retile
+        Write-Host " [OK] Komorebi unpaused & retiled" -ForegroundColor Green
+    }
+} catch {
+    # Non-fatal if state query fails
+}
+
+# Reload or start YASB status bar
+try {
+    if (Get-Process yasb -ErrorAction SilentlyContinue) {
+        Stop-Process -Name yasb -Force -ErrorAction SilentlyContinue
+        Start-Sleep -Milliseconds 300
+    }
+    $yasbExe = "C:\Program Files\YASB\yasb.exe"
+    if (Test-Path $yasbExe) {
+        Start-DetachedProcess "`"$yasbExe`""
+        Write-Host " [OK] YASB status bar restarted (detached)" -ForegroundColor Green
+    }
+} catch {
+    Write-Warning "YASB restart failed: $_"
 }
 
 Write-Host "All configs applied successfully!" -ForegroundColor Green

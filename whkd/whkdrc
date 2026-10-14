@@ -1,7 +1,7 @@
 .shell powershell
 
 # Reload whkd configuration
-alt + o                 : powershell -WindowStyle Hidden -Command "Stop-Process -Name whkd -Force; Start-Sleep -Milliseconds 200; Invoke-CimMethod -ClassName Win32_Process -MethodName Create -Arguments @{CommandLine = '\"C:\Program Files\whkd\bin\whkd.exe\"'}"
+alt + o                 : powershell -WindowStyle Hidden -Command "Stop-Process -Name whkd -Force; Start-Sleep -Milliseconds 200; `$s = New-CimInstance -ClassName Win32_ProcessStartup -Property @{ShowWindow = 0} -ClientOnly; Invoke-CimMethod -ClassName Win32_Process -MethodName Create -Arguments @{CommandLine = '\"C:\Program Files\whkd\bin\whkd.exe\"'; ProcessStartupInformation = `$s}"
 alt + shift + o         : komorebic replace-configuration C:\Users\root\komorebi.json; komorebic enforce-workspace-rules; komorebic retile
 
 alt + i                 : komorebic toggle-shortcuts
