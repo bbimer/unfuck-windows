@@ -1,0 +1,66 @@
+{
+	"window-size": {
+		"width": 958,
+		"height": 486
+	},
+	"window-maximized": true,
+	"window-position": {
+		"x": 3521,
+		"y": 267
+	},
+	"url": "https://music.youtube.com/watch?v=85F5lGA-y0c&list=RDAMVM85F5lGA-y0c&index=0",
+	"options": {
+		"tray": false,
+		"appVisible": true,
+		"autoUpdates": true,
+		"alwaysOnTop": false,
+		"hideMenu": false,
+		"hideMenuWarned": false,
+		"startAtLogin": false,
+		"disableHardwareAcceleration": true,
+		"removeUpgradeButton": false,
+		"restartOnConfigChanges": false,
+		"trayClickPlayPause": false,
+		"autoResetAppCache": false,
+		"resumeOnStart": false,
+		"likeButtons": "",
+		"swapLikeButtonsOrder": false,
+		"proxy": "",
+		"startingPage": "",
+		"overrideUserAgent": false,
+		"usePodcastParticipantAsArtist": false,
+		"themes": []
+	},
+	"plugins": {
+		"notifications": {},
+		"video-toggle": {
+			"mode": "custom"
+		},
+		"precise-volume": {
+			"globalShortcuts": {}
+		},
+		"discord": {
+			"listenAlong": true
+		},
+		"visualizer": {
+			"enabled": false
+		},
+		"album-color-theme": {
+			"enabled": true
+		},
+		"blur-nav-bar": {
+			"enabled": true
+		},
+		"in-app-menu": {
+			"enabled": true
+		},
+		"ambient-mode": {
+			"enabled": true
+		}
+	},
+	"__internal__": {
+		"migrations": {
+			"version": "3.12.0"
+		}
+	}
+}

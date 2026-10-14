@@ -86,9 +86,12 @@ if (Get-Command code -ErrorAction SilentlyContinue) {
     $extensionsFile = "$repoRoot\vscode\extensions.txt"
     if (Test-Path $extensionsFile) {
         $extensions = Get-Content $extensionsFile | Where-Object { $_ -match '\S' }
+        $origEA = $ErrorActionPreference
+        $ErrorActionPreference = "SilentlyContinue"
         foreach ($ext in $extensions) {
             code --install-extension $ext --force 2>$null | Out-Null
         }
+        $ErrorActionPreference = $origEA
         Write-Host " [OK] VS Code theme extensions ensured (Lunar Pink & Bunker icons)" -ForegroundColor Green
     }
 }
@@ -100,6 +103,15 @@ if (-not (Test-Path $ytmThemesDir)) {
 }
 Copy-Item "$repoRoot\youtube-music\themes\*" -Destination $ytmThemesDir -Force -ErrorAction SilentlyContinue
 Write-Host " [OK] YouTube Music themes synced -> $ytmThemesDir" -ForegroundColor Green
+
+$ytmAppDir = "$env:APPDATA\YouTube Music"
+if (Test-Path "$repoRoot\youtube-music\config.json") {
+    if (-not (Test-Path $ytmAppDir)) {
+        New-Item -ItemType Directory -Path $ytmAppDir -Force | Out-Null
+    }
+    Copy-Item "$repoRoot\youtube-music\config.json" -Destination "$ytmAppDir\config.json" -Force
+    Write-Host " [OK] YouTube Music config synced -> $ytmAppDir\config.json" -ForegroundColor Green
+}
 
 if ($NoReload) {
     Write-Host "Skipping reload as requested." -ForegroundColor Yellow
