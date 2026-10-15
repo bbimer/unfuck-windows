@@ -183,15 +183,15 @@ widgets:
         on_left: "toggle_card"
         on_right: "toggle_label"
       icons: 
-        sunnyDay: "\ue30d"
-        clearNight: "\ue32b"
-        cloudyDay: "\udb81\udd99"
-        cloudyNight: "\ue311"
-        rainyDay: "\udb81\ude7e"
-        rainyNight: "\udb81\ude7e"
-        snowyDay: "\udb81\udd98"
-        snowyNight: "\udb81\udd98"
-        default: "\uebaa"
+        sunnyDay: "\udb81\ude19"
+        clearNight: "\udb81\ude15"
+        cloudyDay: "\udb81\ude10"
+        cloudyNight: "\udb81\ude11"
+        rainyDay: "\udb81\ude16"
+        rainyNight: "\udb81\ude16"
+        snowyDay: "\udb81\ude18"
+        snowyNight: "\udb81\ude18"
+        default: "\udb81\ude10"
   battery:
     type: "yasb.battery.BatteryWidget"
     options:
@@ -201,7 +201,7 @@ widgets:
       time_remaining_natural: true
       hide_unsupported: true
       charging_options:
-        icon_format: "{charging_icon} {icon}"
+        icon_format: "{charging_icon}"
       status_thresholds:
         critical: 15
         low: 30
@@ -209,12 +209,12 @@ widgets:
         high: 85
         full: 100
       status_icons:
-        icon_charging: "\uf0e7"
-        icon_critical: "\uf244"
-        icon_low: "\uf243"
-        icon_medium: "\uf242"
-        icon_high: "\uf241"
-        icon_full: "\uf240"
+        icon_charging: "\udb80\udc84"
+        icon_critical: "\udb80\udc7a"
+        icon_low: "\udb80\udc7c"
+        icon_medium: "\udb80\udc7e"
+        icon_high: "\udb80\udc80"
+        icon_full: "\udb80\udc79"
       callbacks:
         on_left: "toggle_label"
   volume:
@@ -223,11 +223,11 @@ widgets:
       label: "<span>{icon}</span> {level}"
       label_alt: "{volume}"
       icons:
-        - "\ueee8"  # Icon for muted
-        - "\uf026"  # Icon for 0-10% volume
-        - "\uf027"  # Icon for 11-30% volume
-        - "\uf027"  # Icon for 31-60% volume
-        - "\uf028"  # Icon for 61-100% volume
+        - "\udb81\ude61"  # Icon for muted
+        - "\udb81\ude5f"  # Icon for 0-10% volume
+        - "\udb81\ude60"  # Icon for 11-30% volume
+        - "\udb81\ude60"  # Icon for 31-60% volume
+        - "\udb81\ude5e"  # Icon for 61-100% volume
       callbacks:
         on_right: "exec cmd.exe /c start ms-settings:sound"
   power_menu:

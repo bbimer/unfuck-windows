@@ -12,14 +12,14 @@
     background-color: rgba(30, 30, 46, 0.25);
 }
 .widget {
-	padding: 0 8px;
+	padding: 0 6px;
 	margin: 0;
 }
 .widget .label {
-	padding: 0px 2px 2px 2px;
+	padding: 1px 0px 0px 0px;
 }
 .widget .label.alt {
-	padding: 1px 8px 1px 8px;
+	padding: 1px 6px 0px 6px;
 }
 .komorebi-workspaces,
 .komorebi-active-layout {
@@ -124,22 +124,24 @@
 
 /* ICONS */
 .icon {
-	font-size: 16px;
+	font-size: 15px;
+	margin: 0 4px 0 0;
 }
 .volume-widget .icon {
 	color: #89b4fa;
-	margin: 1px 2px 0 0;
+	font-size: 15px;
+	margin: 0 4px 0 0;
 }
 
 /* BATTERY WIDGET */
 .battery-widget {
-	padding: 0 4px;
+	padding: 0 6px;
 	margin: 0;
 }
 .battery-widget .icon {
-	font-size: 16px;
-	margin: 0 2px 0 0;
-	color: #ffffff;
+	font-size: 15px;
+	margin: 0 4px 0 0;
+	color: #a6e3a1;
 }
 .battery-widget.status-critical .icon {
 	color: #f38ba8;
@@ -152,24 +154,29 @@
 }
 .battery-widget.status-high .icon,
 .battery-widget.status-full .icon {
-	color: #ffffff;
+	color: #a6e3a1;
 }
 .battery-widget.charging .icon {
-	color: #ffffff;
+	color: #a6e3a1;
 }
  
 /* WEATHER WIDGET */
+.weather-widget {
+	padding: 0 6px;
+	margin: 0;
+}
 .weather-widget .icon {
-	font-size: 16px;
-	margin: 0 2px 1px 0;
+	font-size: 15px;
+	margin: 0 4px 0 0;
+	color: #89dceb;
 }
 .weather-widget .icon.sunnyDay {
 	color: #f9e2af;
 }
 .weather-widget .icon.clearNight {
 	color: #89dceb;
-	font-size: 17px;
-	margin: 0 2px 1px 0;
+	font-size: 15px;
+	margin: 0 4px 0 0;
 }
 
 /* MEDIA WIDGET */
