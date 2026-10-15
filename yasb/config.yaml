@@ -142,7 +142,7 @@ widgets:
     options:
         label_offline: "Komorebi Offline"
         label_workspace_btn: "\udb81\udc3d"
-        label_workspace_active_btn: "\udb80\uded2"
+        label_workspace_active_btn: "\uf004"
         label_workspace_populated_btn: "\udb81\udc3d"
         label_default_name: "{index}"
         label_zero_index: false
