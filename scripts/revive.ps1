@@ -81,3 +81,4 @@ komorebic retile
 Write-Host "========================================" -ForegroundColor Magenta
 Write-Host " Environment successfully restored!    " -ForegroundColor Green
 Write-Host "========================================" -ForegroundColor Magenta
+

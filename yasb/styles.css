@@ -28,9 +28,21 @@
 }
 .komorebi-workspaces .ws-btn {
 	font-size: 16px;
-    background-color: transparent;
+	background-color: transparent;
+	border: none;
+	outline: none;
+	box-shadow: none;
+	padding: 0;
 	margin: 0 4px 0 4px;
 	color: #95a0ad;
+}
+.komorebi-workspaces .ws-btn:hover,
+.komorebi-workspaces .ws-btn:focus,
+.komorebi-workspaces .ws-btn:pressed {
+	background-color: transparent;
+	border: none;
+	outline: none;
+	box-shadow: none;
 }
 .komorebi-workspaces .ws-btn.populated {
 	color: #a0c3ee;
@@ -123,6 +135,33 @@
 .volume-widget .icon {
 	color: #89b4fa;
 	margin: 1px 2px 0 0;
+}
+
+/* BATTERY WIDGET */
+.battery-widget {
+	padding: 0 4px;
+	margin: 0;
+}
+.battery-widget .icon {
+	font-size: 16px;
+	margin: 0 2px 0 0;
+	color: #a6e3a1;
+}
+.battery-widget.status-critical .icon {
+	color: #f38ba8;
+}
+.battery-widget.status-low .icon {
+	color: #fab387;
+}
+.battery-widget.status-medium .icon {
+	color: #f9e2af;
+}
+.battery-widget.status-high .icon,
+.battery-widget.status-full .icon {
+	color: #a6e3a1;
+}
+.battery-widget.charging .icon {
+	color: #a6e3a1;
 }
  
 /* WEATHER WIDGET */

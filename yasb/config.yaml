@@ -45,6 +45,7 @@ bars:
           "audio_visualizer",
           "taskbar",
           "weather",
+          "battery",
           "volume",
           "language",
           "apps",
@@ -142,6 +143,7 @@ widgets:
         label_offline: "Komorebi Offline"
         label_workspace_btn: "\udb81\udc3d"
         label_workspace_active_btn: "\udb81\udc3e"
+        label_workspace_populated_btn: "\udb81\udc3d"
         label_default_name: "{index}"
         label_zero_index: false
         hide_empty_workspaces: false
@@ -190,6 +192,31 @@ widgets:
         snowyDay: "\udb81\udd98"
         snowyNight: "\udb81\udd98"
         default: "\uebaa"
+  battery:
+    type: "yasb.battery.BatteryWidget"
+    options:
+      label: "<span>{icon}</span> {percent}%"
+      label_alt: "<span>{icon}</span> {percent}% ({time_remaining})"
+      update_interval: 5
+      time_remaining_natural: true
+      hide_unsupported: true
+      charging_options:
+        icon_format: "{charging_icon} {icon}"
+      status_thresholds:
+        critical: 15
+        low: 30
+        medium: 60
+        high: 85
+        full: 100
+      status_icons:
+        icon_charging: "\uf0e7"
+        icon_critical: "\uf244"
+        icon_low: "\uf243"
+        icon_medium: "\uf242"
+        icon_high: "\uf241"
+        icon_full: "\uf240"
+      callbacks:
+        on_left: "toggle_label"
   volume:
     type: "yasb.volume.VolumeWidget"
     options:
