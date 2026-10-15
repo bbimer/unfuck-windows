@@ -145,7 +145,7 @@
 .battery-widget .icon {
 	font-size: 16px;
 	margin: 0 2px 0 0;
-	color: #a6e3a1;
+	color: #ffffff;
 }
 .battery-widget.status-critical .icon {
 	color: #f38ba8;
@@ -158,10 +158,10 @@
 }
 .battery-widget.status-high .icon,
 .battery-widget.status-full .icon {
-	color: #a6e3a1;
+	color: #ffffff;
 }
 .battery-widget.charging .icon {
-	color: #a6e3a1;
+	color: #ffffff;
 }
  
 /* WEATHER WIDGET */
