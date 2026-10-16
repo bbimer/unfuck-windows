@@ -8,17 +8,12 @@ $env:PYTHONUTF8 = "1"
 try { Clear-Host } catch {}
 fastfetch
 
-# Oh My Posh initialization with persistent optimized cache
-$ompTheme = "$env:POSH_THEMES_PATH\wholespace.omp.json"
-$ompCacheDir = "$env:LOCALAPPDATA\oh-my-posh"
-$ompCache = "$ompCacheDir\omp_fast_init.ps1"
-$ompExe = "$env:LOCALAPPDATA\Programs\oh-my-posh\bin\oh-my-posh.exe"
+# Oh My Posh initialization with persistent compiled cache
+$ompCache = "$env:LOCALAPPDATA\oh-my-posh\omp_fast_init.ps1"
 
-$needsRebuild = -not (Test-Path -LiteralPath $ompCache) -or 
-    ((Test-Path -LiteralPath $ompTheme) -and ((Get-Item -LiteralPath $ompTheme).LastWriteTime -gt (Get-Item -LiteralPath $ompCache).LastWriteTime)) -or
-    ((Test-Path -LiteralPath $ompExe) -and ((Get-Item -LiteralPath $ompExe).LastWriteTime -gt (Get-Item -LiteralPath $ompCache).LastWriteTime))
-
-if ($needsRebuild) {
+if (-not (Test-Path -LiteralPath $ompCache)) {
+    $ompTheme = "$env:POSH_THEMES_PATH\wholespace.omp.json"
+    $ompCacheDir = "$env:LOCALAPPDATA\oh-my-posh"
     if (-not (Test-Path -LiteralPath $ompCacheDir)) {
         New-Item -ItemType Directory -Path $ompCacheDir -Force | Out-Null
     }
@@ -34,5 +29,5 @@ if ($needsRebuild) {
 if (Test-Path -LiteralPath $ompCache) {
     . $ompCache
 } else {
-    oh-my-posh init pwsh --config $ompTheme | Invoke-Expression
+    oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\wholespace.omp.json" | Invoke-Expression
 }

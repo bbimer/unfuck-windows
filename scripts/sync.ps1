@@ -47,6 +47,10 @@ if (-not (Test-Path $psProfileDir)) {
     New-Item -ItemType Directory -Path $psProfileDir -Force | Out-Null
 }
 Copy-Item "$repoRoot\powershell\Microsoft.PowerShell_profile.ps1" -Destination "$psProfileDir\Microsoft.PowerShell_profile.ps1" -Force
+$ompCache = "$env:LOCALAPPDATA\oh-my-posh\omp_fast_init.ps1"
+if (Test-Path $ompCache) {
+    Remove-Item $ompCache -Force -ErrorAction SilentlyContinue
+}
 Write-Host " [OK] PowerShell profile synced -> $psProfileDir" -ForegroundColor Green
 
 # 6. Fastfetch
