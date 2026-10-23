@@ -6,73 +6,161 @@ komorebi:
   stop_command: "komorebic stop --whkd"
   reload_command: "komorebic reload-configuration"
 bars:
-  status-bar:
+  primary-bar:
     enabled: true
     screens: ['*'] 
     class_name: "yasb-bar"
     alignment:
       position: "top"
     blur_effect:
-      enabled: true 
+      enabled: false
       dark_mode: true
-      round_corners: true
+      round_corners: false
       border_color: None
     window_flags:
-      always_on_top: false
+      always_on_top: true
       windows_app_bar: true
+      hide_on_fullscreen: true
     dimensions:
       width: "100%"
       height: 36
     padding:
-      top: 8
-      left: 8
-      bottom: 14
-      right: 8
+      top: 10
+      left: 14
+      bottom: 2
+      right: 14
     widgets:
       left:
-        [
-          "win_button",
-          "active_window"
-        ] 
-      center: [
-         "clock",
-          "komorebi_workspaces",
-          "komorebi_active_layout",
-        ]
+        ["komorebi_workspaces", "active_window"]
+      center:
+        ["clock"]
       right:
-        [
-          "media",
-          "audio_visualizer",
-          "taskbar",
-          "weather",
-          "battery",
-          "volume",
-          "language",
-          "apps",
-          "power_menu"
-        ]
+        ["media", "systray", "disk", "wifi", "battery", "volume", "language", "notifications"]
 widgets:
-  audio_visualizer:
-    type: "yasb.audio_visualizer.AudioVisualizerWidget"
+  komorebi_workspaces:
+    type: "komorebi.workspaces.WorkspaceWidget"
     options:
-      style: "bars"
-      height: 18
-      smoothness: 35
-      sensitivity: 90
-      auto_gain: true
-      framerate: 60
-      freq_min: 30
-      freq_max: 8000
-      hide_idle: true
-      hide_idle_after: 2000
-      channels: "mono"
-      mono_option: "average"
-      mirror: false
-      reverse: false
-      bars:
-        count: 16
-        width: 3
-        gap: 2
+      label_offline: "Komorebi Offline"
+      label_workspace_btn: ""
+      label_workspace_active_btn: ""
+      label_workspace_populated_btn: ""
+      label_default_name: ""
+      label_zero_index: false
+      hide_empty_workspaces: false
+      hide_if_offline: false
+  active_window:
+    type: "yasb.active_window.ActiveWindowWidget"
+    options:
+      label: "{win[title]}"
+      label_alt: "[class_name='{win[class_name]}' exe='{win[process][name]}']"
+      label_no_window: ""
+      label_icon: true
+      label_icon_size: 14
+      max_length: 40
+      max_length_ellipsis: "..."
+      monitor_exclusive: true
+  clock:
+    type: "yasb.clock.ClockWidget"
+    options:
+      label: "{%b %d, %H:%M}"
+      label_alt: "{%A, %d %B %Y %H:%M:%S}"
+      timezones: []
+      callbacks:
+        on_left: "toggle_label"
+  media:
+    type: "yasb.media.MediaWidget"
+    options:
+      label: "{title}"
+      label_alt: "{artist}"
+      max_field_size:
+        label: 25
+        label_alt: 25
+      show_thumbnail: true
+      controls_only: false
+      controls_left: false
+      hide_empty: true
+      thumbnail_alpha: 80
+      thumbnail_padding: 6
+      thumbnail_corner_radius: 6
+      icons:
+        prev_track: "\ue892"
+        next_track: "\ue893"
+        play: "\ue768"
+        pause: "\ue769"
+  systray:
+    type: "yasb.systray.SystrayWidget"
+    options:
+      class_name: "systray"
+      show_unpinned: true
+      show_unpinned_button: false
+      show_battery: false
+      show_volume: false
+      show_network: false
+  disk:
+    type: "yasb.disk.DiskWidget"
+    options:
+      label: "<span>\uf0c7</span>"
+      label_alt: "<span>\uf0c7</span>"
+      update_interval: 60
+      group_label:
+        volume_labels: ["C"]
+        show_label_name: false
+        blur: True
+        round_corners: True
+        round_corners_type: "small"
+        border_color: "System"
+        alignment: "right"
+        direction: "down"
+      callbacks:
+        on_left: "toggle_group"
+        on_middle: "toggle_label"
+        on_right: "exec explorer C:\\"
+  wifi:
+    type: "yasb.wifi.WifiWidget"
+    options:
+      label: "<span>{wifi_icon}</span>"
+      label_alt: "{wifi_name} {wifi_strength}%"
+      update_interval: 5000
+      callbacks:
+        on_left: "exec quick_settings"
+        on_middle: "do_nothing"
+        on_right: "exec cmd.exe /c start ms-settings:network"
+  battery:
+    type: "yasb.battery.BatteryWidget"
+    options:
+      label: "<span>{icon}</span>"
+      label_alt: "{percent}%"
+      update_interval: 10000
+      charging_options:
+        icon_format: "{charging_icon}"
+      status_thresholds:
+        critical: 15
+        low: 30
+        medium: 60
+        high: 85
+        full: 100
+      status_icons:
+        icon_charging: "\U000f089f"
+        icon_critical: "\U000f0086"
+        icon_low: "\U000f0087"
+        icon_medium: "\U000f0088"
+        icon_high: "\U000f0089"
+        icon_full: "\U000f089f"
+      callbacks:
+        on_left: "toggle_label"
+  volume:
+    type: "yasb.volume.VolumeWidget"
+    options:
+      label: "<span>{icon}</span>"
+      icons:
+        - "\ueee8"
+        - "\uf026"
+        - "\uf027"
+        - "\uf027"
+        - "\uf028"
+      callbacks:
+        on_middle: "exec cmd.exe /c start ms-settings:sound"
+        on_right: "exec quick_settings"
   language:
     type: "yasb.language.LanguageWidget"
     options:
@@ -85,186 +173,15 @@ widgets:
         direction: "down"
         alignment: "center"
         round_corners: true
-        show_layout_icon: true
-        layout_icon: ""
-  media:
-    type: "yasb.media.MediaWidget"
+        show_layout_icon: false
+  notifications:
+    type: "yasb.notifications.NotificationsWidget"
     options:
-      label: "{title} - {artist}"
-      label_alt: "{title}"
-      max_field_size:
-        label: 22
-        label_alt: 32
-      show_thumbnail: true
-      controls_only: false
-      controls_left: true
-      hide_empty: true
-      thumbnail_alpha: 100
-      thumbnail_padding: 0
-      thumbnail_corner_radius: 14
-      media_menu:
-        blur: true
-        round_corners: true
-        alignment: "right"
-        direction: "down"
-        show_source: false
-        show_volume_slider: false
+      label: "<span>\uf476</span>"
+      label_alt: "{count} notifications"
+      hide_empty: false
+      tooltip: false
       callbacks:
-        on_left: "toggle_media_menu"
-        on_middle: "toggle_play_pause"
-        on_right: "toggle_label"
-      icons:
-        prev_track: "\ue892"
-        next_track: "\ue893"
-        play: "\ue768"
-        pause: "\ue769"
-  active_window:
-    type: "yasb.active_window.ActiveWindowWidget"
-    options:
-      label: "{win[title]}"
-      label_alt: "[class_name='{win[class_name]}' exe='{win[process][name]}' hwnd={win[hwnd]}]"
-      label_no_window: ""
-      label_icon: true
-      label_icon_size: 14
-      max_length: 56
-      max_length_ellipsis: "..."
-      monitor_exclusive: true
-  clock:
-    type: "yasb.clock.ClockWidget"
-    options:
-      label: "{%a %d, %b %H:%M}"
-      label_alt: "{%A %d %B %Y, %H:%M}"
-      #locale: 'en_EN' # Langugae for date, you can set your own, example fr_FR
-      timezones: [] #Looking up time zone info from registry
-      #timezones: ["America/Montreal"]
-  komorebi_workspaces:
-    type: "komorebi.workspaces.WorkspaceWidget"
-    options:
-        label_offline: "Komorebi Offline"
-        label_workspace_btn: "\udb81\udc3d"
-        label_workspace_active_btn: "\uf004"
-        label_workspace_populated_btn: "\udb81\udc3d"
-        label_default_name: "{index}"
-        label_zero_index: false
-        hide_empty_workspaces: false
-        hide_if_offline: false
-  komorebi_active_layout:
-    type: "komorebi.active_layout.ActiveLayoutWidget"
-    options:
-      hide_if_offline: true
-      label: "{icon}"
-      layouts: ['bsp', 'columns', 'rows', 'grid', 'vertical_stack', 'horizontal_stack', 'ultrawide_vertical_stack','right_main_vertical_stack']
-      layout_icons:
-        bsp: "BSP"
-        columns: "COLS"
-        rows: "ROWS"
-        grid: "GRID"
-        vertical_stack: "V-STACK"
-        horizontal_stack: "H-STACK"
-        ultrawide_vertical_stack: "W-STACK"
-        right_main_vertical_stack: "RMV-STACK"
-        monocle: "MONOCLE"
-        maximized: "MAX"
-        floating: "FLOATING"
-        paused: "PAUSED"
-      callbacks:
-        on_left: 'next_layout'
-        on_middle: 'toggle_monocle'
-        on_right: 'prev_layout'
-  weather:
-    type: "yasb.open_meteo.OpenMeteoWidget"
-    options:
-      label: "<span>{icon}</span> {temp}"
-      label_alt: "<span>{icon}</span> {temp}"
-      update_interval: 600
-      hide_decimal: true
-      units: "metric"
-      callbacks:
-        on_left: "toggle_card"
-        on_right: "toggle_label"
-      icons: 
-        sunnyDay: "\udb81\ude19"
-        clearNight: "\udb81\ude15"
-        cloudyDay: "\udb81\ude10"
-        cloudyNight: "\udb81\ude11"
-        rainyDay: "\udb81\ude16"
-        rainyNight: "\udb81\ude16"
-        snowyDay: "\udb81\ude18"
-        snowyNight: "\udb81\ude18"
-        default: "\udb81\ude10"
-  battery:
-    type: "yasb.battery.BatteryWidget"
-    options:
-      label: "<span>{icon}</span> {percent}%"
-      label_alt: "<span>{icon}</span> {percent}% ({time_remaining})"
-      update_interval: 5
-      time_remaining_natural: true
-      hide_unsupported: true
-      charging_options:
-        icon_format: "{charging_icon}"
-      status_thresholds:
-        critical: 15
-        low: 30
-        medium: 60
-        high: 85
-        full: 100
-      status_icons:
-        icon_charging: "\udb80\udc84"
-        icon_critical: "\udb80\udc7a"
-        icon_low: "\udb80\udc7c"
-        icon_medium: "\udb80\udc7e"
-        icon_high: "\udb80\udc80"
-        icon_full: "\udb80\udc79"
-      callbacks:
-        on_left: "toggle_label"
-  volume:
-    type: "yasb.volume.VolumeWidget"
-    options:
-      label: "<span>{icon}</span> {level}"
-      label_alt: "{volume}"
-      icons:
-        - "\udb81\ude61"  # Icon for muted
-        - "\udb81\ude5f"  # Icon for 0-10% volume
-        - "\udb81\ude60"  # Icon for 11-30% volume
-        - "\udb81\ude60"  # Icon for 31-60% volume
-        - "\udb81\ude5e"  # Icon for 61-100% volume
-      callbacks:
-        on_right: "exec cmd.exe /c start ms-settings:sound"
-  power_menu:
-    type: "yasb.power_menu.PowerMenuWidget"
-    options:
-      label: "\uf011"
-      uptime: True
-      blur: False
-      blur_background: True
-      animation_duration: 300 # Milisecond 
-      button_row: 3 # Number of buttons in row, min 1 max 5
-      buttons:
-        lock: ["\uea75","Lock"]
-        signout: ["\udb80\udf43","Sign out"]
-        shutdown: ["\uf011","Shut Down"]
-        restart: ["\uead2","Restart"]
-        hibernate: ["\uf28e","Hibernate"]
-        cancel: ["\udb81\udf3a","Cancel"]
-  apps:
-    type: "yasb.applications.ApplicationsWidget"
-    options:
-      label: "{data}"
-      app_list:
-        - {icon: "\uf0a2", launch: "notification_center"}
-        - {icon: "\ueb51", launch: "quick_settings"}
-        - {icon: "\uf46a", launch: "cmd.exe /c start ms-settings:windowsupdate"}
-        - {icon: "\uf422", launch: "search"}
-        - {icon: "\udb84\udf55", launch: "widget"}
-  taskbar:
-    type: "yasb.taskbar.TaskbarWidget"
-    options:
-      icon_size: 14
-  win_button:
-    type: "yasb.custom.CustomWidget"
-    options:
-      label: "\ue62a"
-      label_alt: "\ue62a"
-      class_name: "win-button-widget"
-      callbacks:
-        on_left: "exec start_menu"
+        on_left: "toggle_notification"
+        on_right: "do_nothing"
+        on_middle: "toggle_label"

@@ -32,6 +32,13 @@ if (-not (Test-Path $yasbDstDir)) {
 }
 Copy-Item "$repoRoot\yasb\config.yaml" -Destination "$yasbDstDir\config.yaml" -Force
 Copy-Item "$repoRoot\yasb\styles.css" -Destination "$yasbDstDir\styles.css" -Force
+if (Test-Path "$repoRoot\yasb\scripts") {
+    $scriptsDstDir = "$yasbDstDir\scripts"
+    if (-not (Test-Path $scriptsDstDir)) {
+        New-Item -ItemType Directory -Path $scriptsDstDir -Force | Out-Null
+    }
+    Copy-Item "$repoRoot\yasb\scripts\*" -Destination $scriptsDstDir -Recurse -Force
+}
 Write-Host " [OK] YASB config & styles synced -> $yasbDstDir" -ForegroundColor Green
 
 # 4. Windows Terminal
