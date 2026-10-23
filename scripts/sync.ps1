@@ -25,6 +25,14 @@ if (-not (Test-Path "$env:USERPROFILE\.config")) {
 Copy-Item "$repoRoot\whkd\whkdrc" -Destination $whkdDst -Force
 Write-Host " [OK] whkd config synced -> $whkdDst" -ForegroundColor Green
 
+if (-not (Test-Path "$repoRoot\tools\toggle_taskbar\toggle_taskbar.exe") -and (Test-Path "$repoRoot\tools\toggle_taskbar\build.ps1")) {
+    & "$repoRoot\tools\toggle_taskbar\build.ps1"
+}
+if (Test-Path "$repoRoot\tools\toggle_taskbar\toggle_taskbar.exe") {
+    Copy-Item "$repoRoot\tools\toggle_taskbar\toggle_taskbar.exe" -Destination "$env:USERPROFILE\.config\toggle_taskbar.exe" -Force
+    Write-Host " [OK] toggle_taskbar binary synced -> $env:USERPROFILE\.config\toggle_taskbar.exe" -ForegroundColor Green
+}
+
 # 3. YASB
 $yasbDstDir = "$env:USERPROFILE\.config\yasb"
 if (-not (Test-Path $yasbDstDir)) {
