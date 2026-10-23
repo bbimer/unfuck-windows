@@ -4,3 +4,4 @@ if (-not (Test-Path $csc)) {
     throw "C# compiler csc.exe not found at $csc"
 }
 & $csc /target:winexe /optimize+ /platform:anycpu /out:"$PSScriptRoot\toggle_taskbar.exe" "$PSScriptRoot\Program.cs"
+

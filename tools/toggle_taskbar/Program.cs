@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -38,6 +39,17 @@ internal static class Program
     private const int SW_SHOW = 5;
     private const uint GENERIC_ALL = 0x10000000;
 
+    private static string LogPath = @"C:\Users\root\.config\toggle_taskbar.log";
+
+    private static void Log(string msg)
+    {
+        try
+        {
+            File.AppendAllText(LogPath, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + " - " + msg + Environment.NewLine);
+        }
+        catch {}
+    }
+
     private static void Main()
     {
         var thread = new System.Threading.Thread(() =>
@@ -50,10 +62,7 @@ internal static class Program
                     SetThreadDesktop(hDesk);
                 }
             }
-            catch
-            {
-                // Continue if already on active desktop
-            }
+            catch {}
 
             RunToggle();
         });
@@ -86,16 +95,14 @@ internal static class Program
                         taskbars.Add(hWnd);
                     }
                 }
-                catch
-                {
-                    // Ignore processes that exited
-                }
+                catch {}
             }
             return true;
         }, IntPtr.Zero);
 
         if (taskbars.Count == 0)
         {
+            Log("No explorer taskbar windows found");
             return;
         }
 
@@ -111,6 +118,8 @@ internal static class Program
 
         int cmd = anyVisible ? SW_HIDE : SW_SHOW;
         bool enable = !anyVisible;
+
+        Log(string.Format("Found {0} taskbar(s). Action: {1}", taskbars.Count, anyVisible ? "HIDE" : "SHOW"));
 
         foreach (var hwnd in taskbars)
         {
