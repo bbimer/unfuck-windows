@@ -1,20 +1,20 @@
 .shell powershell
 
 # Reload whkd configuration
-alt + o                 : powershell -WindowStyle Hidden -Command "Stop-Process -Name whkd -Force; Start-Sleep -Milliseconds 200; `$s = New-CimInstance -ClassName Win32_ProcessStartup -Property @{ShowWindow = [uint16]0} -ClientOnly; Invoke-CimMethod -ClassName Win32_Process -MethodName Create -Arguments @{CommandLine = '\"C:\Program Files\whkd\bin\whkd.exe\"'; ProcessStartupInformation = `$s}"
-alt + shift + o         : komorebic replace-configuration C:\Users\root\komorebi.json; komorebic enforce-workspace-rules; komorebic retile
+alt + o                 : powershell -NoProfile -NonInteractive -WindowStyle Hidden -Command "Stop-Process -Name whkd -Force -ErrorAction SilentlyContinue; Start-Sleep -Milliseconds 200; Start-Process -FilePath 'C:\Program Files\whkd\bin\whkd.exe' -WindowStyle Hidden; [System.Media.SystemSounds]::Asterisk.Play()"
+alt + shift + o         : komorebic replace-configuration "$env:USERPROFILE\komorebi.json"; komorebic enforce-workspace-rules; komorebic retile
 
 alt + i                 : komorebic toggle-shortcuts
 
 # App shortcuts
 alt + return            : Start-Process wt
 alt + t                 : Start-Process wt
-alt + e                 : Start-Process "C:\Program Files\OneCommander\OneCommander.exe"
-alt + b                 : C:\Users\root\.config\toggle_taskbar.exe
-alt + oem_2             : Start-Process pythonw -ArgumentList '"c:\Users\root\Desktop\_customization\scripts\cheatsheet.py"'
-alt + shift + oem_2     : Start-Process pythonw -ArgumentList '"c:\Users\root\Desktop\_customization\scripts\cheatsheet.py"'
-win + oem_2             : Start-Process pythonw -ArgumentList '"c:\Users\root\Desktop\_customization\scripts\cheatsheet.py"'
-alt + f1                : Start-Process pythonw -ArgumentList '"c:\Users\root\Desktop\_customization\scripts\cheatsheet.py"'
+alt + e                 : Start-Process explorer
+alt + b                 : & "$env:USERPROFILE\.config\toggle_taskbar.exe"
+alt + oem_2             : Start-Process pythonw -ArgumentList "`"$env:USERPROFILE\Desktop\_customization\scripts\cheatsheet.py`""
+alt + shift + oem_2     : Start-Process pythonw -ArgumentList "`"$env:USERPROFILE\Desktop\_customization\scripts\cheatsheet.py`""
+win + oem_2             : Start-Process pythonw -ArgumentList "`"$env:USERPROFILE\Desktop\_customization\scripts\cheatsheet.py`""
+alt + f1                : Start-Process pythonw -ArgumentList "`"$env:USERPROFILE\Desktop\_customization\scripts\cheatsheet.py`""
 
 alt + shift + q         : komorebic close
 alt + shift + m         : komorebic minimize
@@ -64,7 +64,7 @@ alt + shift + e         : komorebic enforce-workspace-rules
 alt + q                 : komorebic retile
 alt + p                 : komorebic toggle-pause
 alt + u                 : komorebic toggle-transparency
-alt + shift + u         : Start-Process pythonw -ArgumentList '"c:\Users\root\Desktop\_customization\scripts\toggle_transparency.py"'
+alt + shift + u         : Start-Process pythonw -ArgumentList "`"$env:USERPROFILE\Desktop\_customization\scripts\toggle_transparency.py`""
 
 # Layouts
 alt + x                 : komorebic flip-layout horizontal
@@ -95,3 +95,34 @@ alt + ctrl + 4          : komorebic move-to-workspace 3
 alt + ctrl + 5          : komorebic move-to-workspace 4
 alt + ctrl + 6          : komorebic move-to-workspace 5
 alt + ctrl + 7          : komorebic move-to-workspace 6
+
+# ==============================================================================
+# YouTube Ad-Hoc Digest & Prompt Extractor
+# ==============================================================================
+# Alt + D: Быстрый конспект ключевых тезисов (Summary)
+alt + d                 : powershell -NoProfile -NonInteractive -WindowStyle Hidden -Command "cd `$env:USERPROFILE\Desktop\_Intelligence\nullspread-research-academy; python -m research_academy.cli digest --from-clipboard --mode summary"
+
+# Alt + Shift + D: Жесткий критический аудит на инфоцыганство (Audit)
+alt + shift + d         : powershell -NoProfile -NonInteractive -WindowStyle Hidden -Command "cd `$env:USERPROFILE\Desktop\_Intelligence\nullspread-research-academy; python -m research_academy.cli digest --from-clipboard --mode audit"
+
+# Alt + Ctrl + D: Скопировать путь к последнему дайджесту в буфер обмена
+alt + ctrl + d          : powershell -NoProfile -NonInteractive -WindowStyle Hidden -Command "cd `$env:USERPROFILE\Desktop\_Intelligence\nullspread-research-academy; python -m research_academy.cli latest-digest"
+
+# Alt + Ctrl + E: Показать последний дайджест в Проводнике Windows
+alt + ctrl + e          : powershell -NoProfile -NonInteractive -WindowStyle Hidden -Command "cd `$env:USERPROFILE\Desktop\_Intelligence\nullspread-research-academy; python -m research_academy.cli latest-digest --reveal"
+
+# Alt + Ctrl + O: Открыть последний дайджест в редакторе VS Code
+alt + ctrl + o          : powershell -NoProfile -NonInteractive -WindowStyle Hidden -Command "cd `$env:USERPROFILE\Desktop\_Intelligence\nullspread-research-academy; python -m research_academy.cli latest-digest --open"
+
+# Alt + Ctrl + S: Скопировать чистый промпт Executive Summary (для прикрепленного файла)
+alt + ctrl + s          : powershell -NoProfile -NonInteractive -WindowStyle Hidden -Command "cd `$env:USERPROFILE\Desktop\_Intelligence\nullspread-research-academy; python -m research_academy.cli prompt summary"
+
+# Alt + Ctrl + A: Скопировать чистый промпт жесткого аудита (для прикрепленного файла)
+alt + ctrl + a          : powershell -NoProfile -NonInteractive -WindowStyle Hidden -Command "cd `$env:USERPROFILE\Desktop\_Intelligence\nullspread-research-academy; python -m research_academy.cli prompt audit"
+
+# Alt + Ctrl + T: Скопировать чистый промпт пошагового туториала (для прикрепленного файла)
+alt + ctrl + t          : powershell -NoProfile -NonInteractive -WindowStyle Hidden -Command "cd `$env:USERPROFILE\Desktop\_Intelligence\nullspread-research-academy; python -m research_academy.cli prompt tutorial"
+
+# Alt + Ctrl + C: Скопировать мульти-промпт кросс-анализа и синтеза (для пачки из 2+ файлов)
+alt + ctrl + c          : powershell -NoProfile -NonInteractive -WindowStyle Hidden -Command "cd `$env:USERPROFILE\Desktop\_Intelligence\nullspread-research-academy; python -m research_academy.cli prompt compare"
+
